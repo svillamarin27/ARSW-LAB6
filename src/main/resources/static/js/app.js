@@ -1,5 +1,4 @@
-//la constante api se puede cambiar entre apimock y apiclient
-const api=apimock
+const API = apimock
 app = (function () {
     function getByAuthor(funcion) {
         return funcion.map(function(f){
@@ -9,15 +8,15 @@ app = (function () {
 
     function getBlueprintsByNameAndAuthor(author, bpName){
         $("#current").text(bpName)
-        return api.getBlueprintsByNameAndAuthor(author, bpName, pintar);
+        return API.getBlueprintsByNameAndAuthor(author, bpName, draw);
     }
 
     function run() {
         var nombre = $('#autor').val();
-        generarTable(nombre,api.getBlueprintsByAuthor(nombre,getByAuthor));
+        generarTable(nombre,API.getBlueprintsByAuthor(nombre,getByAuthor));
     }
 
-    function pintar(funcion) {
+    function draw(funcion) {
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
         ctx.beginPath();
