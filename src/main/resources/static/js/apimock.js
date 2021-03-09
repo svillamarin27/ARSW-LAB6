@@ -1,71 +1,24 @@
-var apimock = (function () {
+apimock=(function(){
+    var mockdata=[];
+    mockdata["johnconnor"]= [{author: "johnconnor",points: [{"x": 150,"y": 120},{"x": 215,"y": 115}],name: "house"},{author: "johnconnor",points: [{"x": 340,"y": 240},{"x": 15,"y": 215}],name: "gear"}];
+    mockdata["maryweyland"]= [{author: "maryweyland",points: [{"x": 140,"y": 140},{"x": 115,"y": 115}],name: "house2"},{author: "maryweyland",points: [{"x": 140,"y": 140},{"x": 115,"y": 115}],name: "gear2"}];
+    mockdata["daniel"]= [{author: "daniel",points: [{"x": 140,"y": 240},{"x": 199,"y": 399}],name: "house3"},{author: "daniel",points: [{"x": 140,"y": 240},{"x": 199,"y": 399}],name: "gear3"}];
 
-    var mockdata = [];
-
-    mockdata["JhonConnor"] = [
-        {
-            author: "JhonConnor",
-            name: "house",
-            points: [
-                {
-                    x: 10,
-                    y: 20
-                },
-                {
-                    x: 15,
-                    y: 25
-                },
-                {
-                    x: 45,
-                    y: 25
-                }
-            ]
-        },
-        {
-            author: "JhonConnor",
-            name: "bike",
-            points: [
-                {
-                    x: 30,
-                    y: 35
-                },
-                {
-                    x: 40,
-                    y: 45
-                }
-            ]
-        }
-    ]
-
-    mockdata['LexLuthor'] = [
-        {
-            author: 'LexLuthor',
-            name: 'kryptonite',
-            points: [
-                {
-                    x: 60,
-                    y: 65
-                },
-                {
-                    x: 70,
-                    y: 75
-                }
-            ]
-        }
-    ]
-
-    return {
-        getBlueprintsByAuthor: function(author, callback) {
-            callback(null, mockdata[author]);
-        },
-
-        getBlueprintsByNameAndAuthor: function(name, author, callback) {
-            blueprint = mockdata[author].find(function(blueprint) {
-                return blueprint.name == name
-            });
-            callback(null, blueprint)
-        }
+    function getBlueprintsByAuthor(name,callback){
+        return callback(
+            mockdata[name]
+        );
     }
 
+    function getBlueprintsByNameAndAuthor(name,bpname,callback){
+         return callback(
+             mockdata[name].find(function(e){return e.name===bpname})
+         );
+     }
+
+    return {
+        getBlueprintsByAuthor: getBlueprintsByAuthor,
+        getBlueprintsByNameAndAuthor: getBlueprintsByNameAndAuthor
+    };
 })();
 
